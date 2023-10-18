@@ -7,37 +7,40 @@ public class Game extends PApplet {
 
     ArrayList<Tower> towerList;
     ArrayList<Tank> tankList;
+    int timer;
+    int width;
+    int length;
 
     public void settings() {
-        size(600, 600);   // set the window size
-
+        size(displayWidth, displayHeight);   // set the window size
+        width = displayWidth;
+        length = displayHeight;
     }
 
     public void setup() {
         // TODO: initialize game variables
 
+        timer = 0;
+
         towerList = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
 
-            Tower t = new Tower(i*100+30, 150, 100);
+            Tower t = new Tower(i*displayWidth/6+displayWidth/36, displayHeight/3-displayHeight/6, 100);
             towerList.add(t);
 
         }
         for (int i = 0; i < 6; i++) {
 
-            Tower t = new Tower(i*100+30, 350, 100);
+            Tower t = new Tower(i*displayWidth/6+displayWidth/36, 2*displayHeight/3, 100);
             towerList.add(t);
 
         }
 
         tankList = new ArrayList<>();
 
-        for (int i = 0; i < 50; i++) {
 
-            Tank q = new Tank(-(i*100), 250, 100);
-            tankList.add(q);
 
-        }
+
 
 
 
@@ -49,23 +52,28 @@ public class Game extends PApplet {
      * tick each object (have it update itself), and draw each object
      */
     public void draw() {
-        background(255);
-        fill(150);
-        rect(0, 200, 600, 150);
+        timer--;
+        background(	135, 206, 235);
+        fill(100);
+        rect(0, displayHeight/3, displayWidth, displayHeight/3);
 
 
         for (Tower t : towerList){
            t.draw(this, t);
-           Bullet b = t.Shoot(t);
-           b.draw(this, b);
 
+        }
+
+        if (timer <= 0){
+            Tank q = new Tank(-displayWidth/8, displayHeight/2-(displayHeight/16), 100);
+            tankList.add(q);
+            timer=displayWidth/10;
         }
 
         for (Tank q : tankList){
-            q.draw(this, q);
             q.update();
-        }
+            q.draw(this, q);
 
+        }
 
 
         /**ellipse(mouseX, mouseY, 60, 60);  // draw circle at mouse loc

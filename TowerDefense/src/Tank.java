@@ -3,18 +3,21 @@ import processing.core.PApplet;
 public class Tank extends PApplet {
         private int health;
         private float x,y;
-        private static int width = 30;
-        private static int length = 40;
+        private final int width;
+        private final int length;
         private int xSpeed, ySpeed;
         private float BulletX, BulletY;
         private int BulletXSpeed, BulletYSpeed, BulletRadius;
+
 
 
         public Tank(float x, float y, int health){
             this.x = x;
             this.y = y;
             this.health = health;
-            xSpeed = 1;
+            width = displayWidth/2;
+            length = displayHeight/2;
+            xSpeed = 2;
         }
 
         public void update(){
@@ -22,9 +25,8 @@ public class Tank extends PApplet {
         }
 
         public void draw(Game g, Tank t){
-            g.fill(0, 0, 250);
-            g.rect(t.x, t.y, width, length);
-
+            g.fill(109, 112, 79);
+            g.rect(t.x, t.y, (float) g.width /8, (float) g.length /8);
 
         }
 

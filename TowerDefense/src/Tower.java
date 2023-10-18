@@ -17,15 +17,14 @@ public class Tower extends PApplet{
     }
 
     public void draw(Game g, Tower t){
-        g.fill(0, 250, 0);
-        g.rect(t.x, t.y, width, length);
+        g.fill(139, 79, 57);
+        g.rect(t.x, t.y, g.width/10, g.length/6);
     }
 
 
-    public Bullet Shoot(Tower t){
-        Bullet bullet = new Bullet(t.x,t.y,(int)(Math.random()*2),(int)(Math.random()*2),2);
-        return bullet;
+   /** public Bullet Shoot(Tower t){
     }
+    **/
 
     /**
 
